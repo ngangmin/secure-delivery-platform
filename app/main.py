@@ -9,3 +9,8 @@ def health():
 @app.get("/")
 def root():
 	return {"message": "Hello from Secure Delivery Platform"}
+
+
+@app.get("/calc")
+def calc(expr: str):
+    return {"result": eval(expr)}
