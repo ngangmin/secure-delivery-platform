@@ -48,3 +48,15 @@ jobs:
         with:
           name: sbom
           path: sbom.spdx.json
+
+  sast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Semgrep
+        run: pip install semgrep
+      - name: Semgrep scan
+        run: semgrep scan --config p/python --config p/security-audit --error --metrics=off app
